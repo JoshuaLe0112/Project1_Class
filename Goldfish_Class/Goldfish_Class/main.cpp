@@ -6,44 +6,31 @@ using namespace std;
 
 int main(int argc, char * argv[]) {
 
-	/*goldfish goldfish1("goldie");
-	
-	goldfish1.feedFish(0.1);
-	goldfish1.feedFish(0.2);
-	goldfish1.feedFish(0.5);
-	goldfish1.print();
-
-	goldfish1.nextDay();
-	goldfish1.print();
-
-	goldfish1.changeName("Destruction");
-	goldfish1.feedFish(0.9);
-	goldfish1.print();
-	goldfish1.feedFish(1.2);*/
-
-	int option = 1;
-	char choice; 
-
-	goldfish goldfish1; 
-	string name; 
+	string name;
 	double food;
-
-
-
-	cout << "Name your gold fish: ";
-	
+	int userOption;
+	cout <<"Enter your gold fish name: ";
 	getline(cin, name);
-	goldfish1.setName(name);
+	goldfish goldfish1(name);
 
-	do {
-		
-		cout << "How many grams you want to feed the fish?: ";
-		cin >> food; 
-		goldfish1.setFoodEaten(food);
-		goldfish1.print();
-		goldfish1.nextDay();
+	while (goldfish1.isAlive()) {
 
-	} while (true);
+			cout <<"How many grams of food do you want to feed " <<goldfish1.getName() << ": ";
+			cin >> food;
+			goldfish1.feedFish(food);
+			goldfish1.print();
+			goldfish1.nextDay();
+
+			if (!goldfish1.isAlive()) {
+				goldfish1.print();
+				break;
+			}
+
+	}
+
+
+
+
 
 	return 0; 
 

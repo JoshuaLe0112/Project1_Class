@@ -74,12 +74,10 @@ void goldfish::changeName(string newName) {
 //
 void goldfish::print() {
 	cout << "Goldfish's name: " << name << "\n";
-	cout << "How long it has live: " << ageInDays << " days\n";
-	cout << "The current amount of food: " << foodEaten << " gram\n";
+	cout << "How long it has lived: " << ageInDays << " days\n";
+	cout << "The current amount of food: " << foodEaten << " grams\n";
 	cout << "Condition: \n";
 	if (isSwimming) {
-
-		cout << "Still alive!!!!\n";
 
 		cout << "o\n";
 		cout << "o      ______/~/~/~/__           /((\n";
@@ -92,6 +90,7 @@ void goldfish::print() {
 	}
 	else
 	{
+		cout << endl;
 		cout << name << " is dead :(\n";
 
 		cout << "                                 //)\n";
@@ -106,15 +105,14 @@ void goldfish::print() {
 }
 
 void goldfish::feedFish(double amount) {
-	
 	if (isSwimming) {
 		foodEaten += amount;
 		if (foodEaten > 0.8) {
 			setIsAlive(false);
 		}
-	}
-	else {
-		cout <<"Cannot feed anymore because " << name << " is dead :((\n\n";
+		else if (foodEaten < 0) {
+			setIsAlive(false);
+		}
 	}
 }
 
@@ -123,8 +121,8 @@ void goldfish::nextDay() {
 	if (isSwimming) {
 		ageInDays++;
 		foodEaten -= 0.4;
-		if (ageInDays == 1000) {
-			setIsAlive(false);
+		if (ageInDays > 1000) {
+			isSwimming = false;
 		}
 	}
 }
