@@ -7,16 +7,16 @@ using namespace std;
 //constructor
 goldfish::goldfish() {
 	this->name = "Goldie";
-	foodEaten = 0.0;
-	ageInDays = 0;
+	foodEaten = 0.0; // measured in grams
+	ageInDays = 0;  // measured in day
 	isSwimming = true;
 }
 
 //copy constructor
 goldfish::goldfish(const goldfish& newGoldFish) {
 	this->name = newGoldFish.name;
-	this->foodEaten = newGoldFish.foodEaten;
-	this->ageInDays = newGoldFish.ageInDays;
+	this->foodEaten = newGoldFish.foodEaten; // measured in grams
+	this->ageInDays = newGoldFish.ageInDays; // measured in days
 	this->isSwimming = newGoldFish.isSwimming;
 }
 
@@ -60,7 +60,7 @@ void goldfish::setFoodEaten(const double newFoodEaten) {
 }
 
 void goldfish::setAge(const int newAge) {
-	ageInDays = newAge; 
+	ageInDays = newAge;
 }
 
 void goldfish::setIsAlive(const bool isNewSwimming) {
@@ -77,6 +77,8 @@ void goldfish::print() {
 	cout << "How long it has lived: " << ageInDays << " days\n";
 	cout << "The current amount of food: " << foodEaten << " grams\n";
 	cout << "Condition: \n";
+
+	//Check if the fish is swimming or not -> dead or alive
 	if (isSwimming) {
 
 		cout << "o\n";
@@ -90,7 +92,6 @@ void goldfish::print() {
 	}
 	else
 	{
-		cout << endl;
 		cout << name << " is dead :(\n";
 
 		cout << "                                 //)\n";
@@ -104,24 +105,36 @@ void goldfish::print() {
 	}
 }
 
+//Feeding fish function
 void goldfish::feedFish(double amount) {
+	//Check if the fish is swimming
 	if (isSwimming) {
+		//add the amount of food
 		foodEaten += amount;
+		//if more than 0.8
 		if (foodEaten > 0.8) {
+			//the fish is dead
 			setIsAlive(false);
 		}
+			//check if the fish is not fed
 		else if (foodEaten < 0) {
+			//the fish is dead
 			setIsAlive(false);
 		}
 	}
 }
 
-
+//Next day function
 void goldfish::nextDay() {
+	//check if the fish is still swimming
 	if (isSwimming) {
+		//age + 1
 		ageInDays++;
+		// food - 0.4
 		foodEaten -= 0.4;
+		//if live more than 1000 days
 		if (ageInDays > 1000) {
+			//the fish is dead
 			isSwimming = false;
 		}
 	}
