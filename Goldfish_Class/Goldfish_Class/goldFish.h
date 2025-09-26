@@ -7,14 +7,17 @@ class goldfish {
 
 public:
 /// <summary>
-/// 
-/// 
+/// This is my default constructor
+///		name is set to "Goldie"
+///		food measured in grams is set to 0.0
+///		age is set to 0
+///		isSwimming is set to true
 /// </summary>
 
 	//constructor
 	goldfish();
 
-	//constructor that takes a name 
+	//a constructor that takes a name
 	goldfish(const string& name);
 
 	//copyconstructor 
