@@ -40,7 +40,7 @@ public:
 	void changeName(string);
 
 	//to do stuff list 
-	void print();
+	void print() ;
 	void feedFish(double);
 	void nextDay();
 

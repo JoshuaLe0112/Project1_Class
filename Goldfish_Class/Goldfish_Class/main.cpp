@@ -7,35 +7,34 @@ using namespace std;
 int main(int argc, char * argv[]) {
 
 	string name;
-	double food;
-
-	//Create a goldfish
-	goldfish goldfish1(name);
 	//ask the user to name the fish
 	cout <<"Enter your gold fish name: ";
 	getline(cin, name);
+	//Create a goldfish
+	goldfish goldfish1(name);
 
 	//check if the fish is still alive
-	while (goldfish1.isAlive()) {
+	 while (goldfish1.isAlive()) {
+	 		double food;
+	 		//ask how many grams to feed
+	 		cout <<"How many grams of food do you want to feed " <<goldfish1.getName() << ": ";
+	 		cin >> food;
+	 		//feed the fish
+	 		goldfish1.feedFish(food);
+	 		//advance the day
+	 		goldfish1.nextDay();
 
-			//ask how many grams to feed
-			cout <<"How many grams of food do you want to feed " <<goldfish1.getName() << ": ";
-			cin >> food;
-			//feed the fish
-			goldfish1.feedFish(food);
-			//advance the day
-			goldfish1.nextDay();
-			//print out the fish
-			goldfish1.print();
-
-			//if the fish is dead
-			if (!goldfish1.isAlive()) {
-				//print the fish and exit the loop
-				goldfish1.print();
-				break;
-			}
+	 		//check if the fish is still alive
+	 		if (goldfish1.isAlive()) {
+	 			goldfish1.print();
+	 		}else {
+	 			// if the fish is dead then break the loop
+	 			break;
+	 		}
 
 	}
+	//print the dead fish
+	 goldfish1.print();
 
 
 	return 0; 

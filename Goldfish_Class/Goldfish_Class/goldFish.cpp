@@ -1,6 +1,9 @@
 #include"goldFish.h"
+
+#include <iomanip>
 #include<string>
 #include<iostream>
+#include<cmath>
 
 using namespace std;
 
@@ -72,14 +75,16 @@ void goldfish::changeName(string newName) {
 }
 
 //
-void goldfish::print() {
+void goldfish::print()  {
 	cout << "Goldfish's name: " << name << "\n";
 	cout << "How long it has lived: " << ageInDays << " days\n";
 	cout << "The current amount of food: " << foodEaten << " grams\n";
-	cout << "Condition: \n";
+	cout << "Condition: ";
 
 	//Check if the fish is swimming or not -> dead or alive
 	if (isSwimming) {
+
+		cout << name << " is swimming\n";
 
 		cout << "o\n";
 		cout << "o      ______/~/~/~/__           /((\n";
@@ -112,15 +117,11 @@ void goldfish::feedFish(double amount) {
 		//add the amount of food
 		foodEaten += amount;
 		//if more than 0.8
-		if (foodEaten > 0.8) {
+		if (foodEaten > 0.8 ) {
 			//the fish is dead
-			setIsAlive(false);
+			isSwimming = false;
 		}
-			//check if the fish is not fed
-		else if (foodEaten < 0) {
-			//the fish is dead
-			setIsAlive(false);
-		}
+
 	}
 }
 
@@ -132,8 +133,15 @@ void goldfish::nextDay() {
 		ageInDays++;
 		// food - 0.4
 		foodEaten -= 0.4;
-		//if live more than 1000 days
-		if (ageInDays > 1000) {
+
+		//round func from cmath library to round up the value if the input is:
+		//0.6
+		//0.2
+		//0.3
+		foodEaten = round(foodEaten*100.0)/100.0;
+
+		//if live more than 10000 days
+		if (foodEaten <0.0 || ageInDays > 10000) {
 			//the fish is dead
 			isSwimming = false;
 		}
